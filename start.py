@@ -15,6 +15,7 @@ qemu_opts = [
     '-kernel', kernel_bzimage,
     '-initrd', kernel_initrd,
     '-append', kernel_cmdline,
+    '-pidfile', 'qemu.pid',
 ]
 
 
