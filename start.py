@@ -5,7 +5,11 @@ from subprocess import Popen
 
 kernel_bzimage = "/boot/vmlinuz-" + platform.release()
 kernel_initrd = "initrd-1.img"
-kernel_cmdline = 'console=ttyS0 raid=noautodetect'
+kernel_cmdline = ' '.join((
+        'quiet',
+        'console=ttyS0',
+        'raid=noautodetect',
+        ))
 
 # unix.stackexchange.com/questions/167165
 #stty intr "^]"
