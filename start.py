@@ -19,4 +19,5 @@ qemu_opts = [
 ]
 
 
-Popen(['qemu-kvm'] + qemu_opts)
+p = Popen(['qemu-kvm'] + qemu_opts)
+p.wait()
