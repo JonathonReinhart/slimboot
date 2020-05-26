@@ -17,6 +17,7 @@ kernel_cmdline = ' '.join((
 #stty intr "^]"
 
 qemu_opts = [
+    '-machine', 'accel=kvm',
     '-nographic',
     '-kernel', kernel_bzimage,
     '-initrd', kernel_initrd,
@@ -24,8 +25,7 @@ qemu_opts = [
     '-pidfile', pidfile,
 ]
 
-
-p = Popen(['qemu-kvm'] + qemu_opts)
+p = Popen(['qemu-system-x86_64'] + qemu_opts)
 p.wait()
 
 os.remove(pidfile)
