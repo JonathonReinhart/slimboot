@@ -27,5 +27,3 @@ qemu_opts = [
 
 p = Popen(['qemu-system-x86_64'] + qemu_opts)
 p.wait()
-
-os.remove(pidfile)
