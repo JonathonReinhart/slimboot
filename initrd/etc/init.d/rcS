@@ -7,3 +7,14 @@ mount -t devtmpfs devtmpfs /dev
 mkdir -p /sys
 mount -t sysfs sysfs /sys
 mount -t debugfs debugfs /sys/kernel/debug
+
+
+#insmod /lib/modules/$(uname -r)/kernel/drivers/virtio/virtio.ko
+#insmod /lib/modules/$(uname -r)/kernel/drivers/virtio/virtio_ring.ko
+insmod /lib/modules/$(uname -r)/kernel/drivers/virtio/virtio_pci_legacy_dev.ko
+insmod /lib/modules/$(uname -r)/kernel/drivers/virtio/virtio_pci_modern_dev.ko
+insmod /lib/modules/$(uname -r)/kernel/drivers/virtio/virtio_pci.ko
+insmod /lib/modules/$(uname -r)/kernel/net/vmw_vsock/vsock.ko
+insmod /lib/modules/$(uname -r)/kernel/net/vmw_vsock/vsock_diag.ko
+insmod /lib/modules/$(uname -r)/kernel/net/vmw_vsock/vmw_vsock_virtio_transport_common.ko
+insmod /lib/modules/$(uname -r)/kernel/net/vmw_vsock/vmw_vsock_virtio_transport.ko

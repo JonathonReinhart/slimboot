@@ -47,6 +47,27 @@ cp /usr/bin/busybox $WORKDIR/bin/busybox
 # /sbin/init doesn't work and init= seems to be ignored.
 (cd $WORKDIR && ln -s "/bin/busybox" init)
 
+
+# Kernel modules
+COPY_MODS=(
+    kernel/net/vmw_vsock/vsock.ko
+    kernel/net/vmw_vsock/vsock_diag.ko
+    kernel/net/vmw_vsock/vmw_vsock_virtio_transport_common.ko
+    kernel/net/vmw_vsock/vmw_vsock_virtio_transport.ko
+    #kernel/drivers/virtio/virtio.ko
+    kernel/drivers/virtio/virtio_pci.ko
+    kernel/drivers/virtio/virtio_pci_legacy_dev.ko
+    kernel/drivers/virtio/virtio_pci_modern_dev.ko
+    #kernel/drivers/virtio/virtio_ring.ko
+)
+for mod in ${COPY_MODS[@]}; do
+    src="/lib/modules/$(uname -r)/$mod"
+    dest="$WORKDIR/lib/modules/$(uname -r)/$mod"
+    mkdir -p $(dirname $dest)
+    cp $src $dest
+done
+
+
 # Generate initrd
 (cd $WORKDIR && find . | cpio -o -H newc -R '+0:+0') | gzip > $IMAGE
 gzip -dc $IMAGE | cpio -itv

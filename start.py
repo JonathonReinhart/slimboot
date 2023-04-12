@@ -16,6 +16,8 @@ kernel_cmdline = ' '.join((
 # unix.stackexchange.com/questions/167165
 #stty intr "^]"
 
+VM_CID = 7
+
 qemu_opts = [
     '-machine', 'accel=kvm',
     '-nographic',
@@ -23,6 +25,7 @@ qemu_opts = [
     '-initrd', kernel_initrd,
     '-append', kernel_cmdline,
     '-pidfile', pidfile,
+    '-device', f'vhost-vsock-pci,id=vhost-vsock-pci0,guest-cid={VM_CID}',
 ]
 
 p = Popen(['qemu-system-x86_64'] + qemu_opts)
