@@ -16,6 +16,9 @@ mkdir -p $WORKDIR/sbin
 mkdir -p $WORKDIR/usr/bin
 mkdir -p $WORKDIR/usr/sbin
 
+# Copy all static files from initrd
+cp -r initrd/* $WORKDIR/
+
 # Build sample app
 gcc -o $WORKDIR/bin/hello -Wall -Werror -static hello.c
 
@@ -38,13 +41,6 @@ cp /usr/bin/busybox $WORKDIR/bin/busybox
         fi
     done
 )
-
-# Init scripts
-mkdir -p $WORKDIR/etc
-cp -r init.d $WORKDIR/etc/init.d
-
-# Extra files
-cp -r initrd-extra/!(README) $WORKDIR/
 
 # Init
 # TODO: For some reason, on my current kernel, `init` needs to be at the root;
