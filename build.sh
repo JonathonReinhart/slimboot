@@ -2,10 +2,13 @@
 
 set -e
 
-WORKDIR="initrd"
-IMAGE="initrd-1.img"
+BUILDDIR="build"
+WORKDIR="$BUILDDIR/initrd"
+IMAGE="$BUILDDIR/initrd-1.img"
 
-rm -rf $WORKDIR
+rm -rf $BUILDDIR
+mkdir -p $BUILDDIR
+
 mkdir -p $WORKDIR
 mkdir -p $WORKDIR/bin
 mkdir -p $WORKDIR/sbin

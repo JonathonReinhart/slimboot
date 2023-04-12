@@ -6,7 +6,7 @@ from subprocess import Popen
 
 pidfile = "qemu.pid"
 kernel_bzimage = "/boot/vmlinuz-" + platform.release()
-kernel_initrd = "initrd-1.img"
+kernel_initrd = "build/initrd-1.img"
 kernel_cmdline = ' '.join((
         'quiet',
         'console=ttyS0',
