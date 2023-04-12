@@ -1,5 +1,6 @@
 #!/bin/bash
 
+shopt -s extglob
 set -e
 
 BUILDDIR="build"
@@ -41,6 +42,9 @@ cp /usr/bin/busybox $WORKDIR/bin/busybox
 # Init scripts
 mkdir -p $WORKDIR/etc
 cp -r init.d $WORKDIR/etc/init.d
+
+# Extra files
+cp -r initrd-extra/!(README) $WORKDIR/
 
 # Init
 # TODO: For some reason, on my current kernel, `init` needs to be at the root;
